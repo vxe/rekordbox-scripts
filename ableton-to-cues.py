@@ -59,12 +59,15 @@ def get_warp_marker(time, num, bpm):
 
 
 def get_rekordbox_filename(track):
-    parts = rekordbox_track.get('Location').split('/')
+    # parts = rekordbox_track.get('Location').split('/')
+    parts = track.get('Location').split('file://localhost')
     return unquote(parts[-1])
 
 
 def get_ableton_filename(track):
-    return track.find('.//FileRef').find('./Name').get('Value')
+    # track.find('.//SampleRef').find('.//FileRef').find('.//Path').get('Value')
+    # return track.find('.//SampleRef').find('./Name').get('Value')
+    return track.find('.//SampleRef').find('.//FileRef').find('.//Path').get('Value')
 
 
 # get ableton audio tracks
